@@ -1,4 +1,23 @@
-module.exports = (sequelize, Sequelize) => {
+import Sequelize from 'sequelize'
+import { sequelize } from '../db/db.js'
+
+export const ReporteConsumo = sequelize.define(
+    'ReporteConsumo',
+    {
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
+        OrdenId:{
+            type: Sequelize.INTEGER
+        },
+        resumen: {
+            type:Sequelize.STRING(200)
+        }
+    }
+)
+/* module.exports = (sequelize, Sequelize) => {
 	const ReporteConsumo = sequelize.define('ReporteConsumo',{
         id: {
             type: Sequelize.INTEGER,
@@ -21,4 +40,4 @@ module.exports = (sequelize, Sequelize) => {
 	}
 
     return ReporteConsumo;
-}
+} */

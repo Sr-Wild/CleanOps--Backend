@@ -1,4 +1,6 @@
-module.exports = function (app) {
-    app.use('/usuario', require('./RUser'))
-    app.use('/nivelUsuario', require('./RNivelUsuario'))
+import UserRouter from './RUser.js'
+
+export default function RouterManagement(app){
+    app.use("/usuario",UserRouter)
 }
+

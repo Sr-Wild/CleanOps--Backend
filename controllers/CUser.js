@@ -1,83 +1,76 @@
-'use strict'
-const db = require('../db/db')
-const responses = require('../utils/responses')
-const MUser = db.usuarios
 
-async function getAllUsers (req, res) {
+import { makeResponsesException, makeResponsesOkData } from '../utils/responses.js'
+import { Usuario } from '../models/MUser.js'
+
+
+export const getAllUsers = async (req, res) => {
   try {
-    const users = await MUser.findAll({
-        order: [['id', 'asc']]
+    const users = await Usuario.findAll({
+      order: [['id', 'asc']]
     })
-    responses.makeResponsesOkData(res, users, "Success")
+    makeResponsesOkData(res, users, "Success")
   } catch (e) {
-    responses.makeResponsesException(res, e)
+    makeResponsesException(res, e)
   }
 }
 
-async function getUserById (req, res) {
+export const getUserById = async (req, res) => {
   try {
-    const id = req.params.id
-    const user = await MUser.findOne({
-        where: { id }
+    const {id} = req.params
+    console.log(id)
+    const user = await Usuario.findOne({
+      where: { id }
     })
-    responses.makeResponsesOkData(res, user, "Success")
+    makeResponsesOkData(res, user, "Success")
   } catch (e) {
-    responses.makeResponsesException(res, e)
+    makeResponsesException(res, e)
   }
 }
 
-async function createUser (req, res) {
+export const createUser = async (req, res) => {
   try {
-    const userData = req.body
-    const user = await MUser.create({
-      cedula: userData.cedula,
-      contrasena: userData.contrasena,
-      nombre: userData.nombre,
-      apellido: userData.apellido,
-      correo: userData.correo,
-      telefono:  userData.telefono,
-      direccion: userData.direccion,
-      fechanac: userData.fechanac,
-      cargo: userData.cargo,
-      disponibilidad: userData.disponibilidad,
-      tipo:  userData.tipo,
+    const { cedula, contrasena, nombre, apellido, correo, telefono, direccion, fechanac, cargo, disponibilidad } = req.body
+    const user = await Usuario.create({
+      cedula,
+      contrasena,
+      nombre,
+      apellido,
+      correo,
+      telefono,
+      direccion,
+      fechanac,
+      cargo,
+      disponibilidad,
     })
-    responses.makeResponsesOkData(res, user, "Success")
+    makeResponsesOkData(res, user, "Success")
   } catch (e) {
-    responses.makeResponsesException(res, e)
+    makeResponsesException(res, e)
   }
 }
 
-async function updateUser (req, res) {
+export const updateUser = async (req, res) => {
   try {
-    const id = req.params.id
-    const userData = req.body
-    const user = await MUser.update({
-      cedula: userData.cedula,
-      contrasena: userData.contrasena,
-      nombre: userData.nombre,
-      apellido: userData.apellido,
-      correo: userData.correo,
-      telefono:  userData.telefono,
-      direccion: userData.direccion,
-      fechanac: userData.fechanac,
-      cargo: userData.cargo,
-      disponibilidad: userData.disponibilidad,
-      tipo:  userData.tipo,
-      created: now()
+    const { id } = req.params
+    console.log(id)
+    const { cedula, contrasena, nombre, apellido, correo, telefono, direccion, fechanac, cargo, disponibilidad } = req.body
+    const user = await Usuario.update({
+      cedula: cedula != cedula ? cedula = cedula: cedula,
+      contrasena,
+      nombre,
+      apellido,
+      correo,
+      telefono,
+      direccion,
+      fechanac,
+      cargo,
+      disponibilidad,
     },
     {
       where: { id }
     })
-    responses.makeResponsesOkData(res, user, "Success")
+    
+    makeResponsesOkData(res, user, "Success")
   } catch (e) {
-    responses.makeResponsesException(res, e)
+    makeResponsesException(res, e)
   }
-}
-
-module.exports = {
-    getAllUsers,
-    getUserById,
-    createUser,
-    updateUser
 }

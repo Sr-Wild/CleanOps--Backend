@@ -1,6 +1,6 @@
-const message = require('./messages.json')
+import message from './messages.json' assert {type: "json"}
 
-function makeResponsesError(res, code) {
+export const makeResponsesError = (res, code) => {
   const msg = {
     OK: 0,
     Message: message[[code]]
@@ -8,7 +8,7 @@ function makeResponsesError(res, code) {
   res.status(404).json(msg)
 }
 
-function makeResponsesException(res, err) {
+export const makeResponsesException = (res, err) => {
   const msg = {
     OK: 0,
     Message: err
@@ -16,7 +16,7 @@ function makeResponsesException(res, err) {
   res.status(404).json(msg)
 }
 
-function makeResponsesOk(res, code) {
+export const makeResponsesOk = (res, code) => {
   const msg = {
     OK: 1,
     Message: message[[code]]
@@ -24,7 +24,7 @@ function makeResponsesOk(res, code) {
   res.status(200).json(msg)
 }
 
-function makeResponsesOkData(res, data, code) {
+export const makeResponsesOkData = (res, data, code) => {
   const msg = {
     OK: 1,
     Data: data,
@@ -33,9 +33,3 @@ function makeResponsesOkData(res, data, code) {
   res.status(200).json(msg)
 }
 
-module.exports = {
-  makeResponsesException,
-  makeResponsesOkData,
-  makeResponsesError,
-  makeResponsesOk
-}

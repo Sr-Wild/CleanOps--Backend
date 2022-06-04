@@ -1,9 +1,10 @@
-var router = require('express').Router()
-var cUser = require('../controllers/CUser')
+import { Router } from 'express'
+import { createUser, updateUser, getAllUsers, getUserById } from '../controllers/CUser.js'
+const router = Router()
 
-router.get('/', cUser.getAllUsers)
-router.get('/id/:id', cUser.getUserById)
-router.post('/create', cUser.createUser)
-router.put('/:id', cUser.updateUser)
+router.get('/', getAllUsers)
+router.get('/id/:id', getUserById)
+router.post('/create', createUser)
+router.put('/update/:id', updateUser)
 
-module.exports = router
+export default router
