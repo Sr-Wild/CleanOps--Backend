@@ -17,7 +17,6 @@ export const getAllUsers = async (req, res) => {
 export const getUserById = async (req, res) => {
   try {
     const {id} = req.params
-    console.log(id)
     const user = await Usuario.findOne({
       where: { id }
     })
@@ -51,10 +50,9 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     const { id } = req.params
-    console.log(id)
     const { cedula, contrasena, nombre, apellido, correo, telefono, direccion, fechanac, cargo, disponibilidad } = req.body
     const user = await Usuario.update({
-      cedula: cedula != cedula ? cedula = cedula: cedula,
+      cedula,
       contrasena,
       nombre,
       apellido,
