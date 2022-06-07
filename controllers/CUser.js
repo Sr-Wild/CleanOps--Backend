@@ -16,7 +16,7 @@ export const getAllUsers = async (req, res) => {
 
 export const getUserById = async (req, res) => {
   try {
-    const {id} = req.params
+    const { id } = req.params
     const user = await Usuario.findOne({
       where: { id }
     })
@@ -63,10 +63,10 @@ export const updateUser = async (req, res) => {
       cargo,
       disponibilidad,
     },
-    {
-      where: { id }
-    })
-    
+      {
+        where: { id }
+      })
+
     makeResponsesOkData(res, user, "Success")
   } catch (e) {
     makeResponsesException(res, e)

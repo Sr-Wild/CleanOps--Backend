@@ -1,4 +1,4 @@
-import { check } from 'express-validator'
+import { check, param } from 'express-validator'
 import { validateResult } from './validateHelpers.js'
 
 export const validateCreate = [
@@ -26,5 +26,13 @@ export const validateUpdate = [
 	check('fechanac').exists().notEmpty().isDate().optional(),
 	check('cargo').exists().notEmpty().isLength({ max: 20 }).isString().optional(),
 	check('disponibilidad').exists().notEmpty().isInt().optional(),
+	(req, res, next) => { validateResult(req, res, next) }
+]
+
+export const validateParams = [
+	param('id').isInt().custom((value) => { if (value <= 0) { throw new Error('the id value does not belong to any user') } return true }),
+	param('cedula').exists().notEmpty().isLength({  max: 10 }).isString().optional(),
+	param('correo').exists().notEmpty().isLength({ max: 30 }).isEmail().optional(),
+	param('telefono').exists().notEmpty().isLength({ max: 12 }).isString().optional(),
 	(req, res, next) => { validateResult(req, res, next) }
 ]
