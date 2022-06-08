@@ -46,7 +46,12 @@ export const Usuario = sequelize.define(
 		},
 		NivelUsuarioId: {
 			type: Sequelize.INTEGER
-		}
+		},
+		
+	},
+	{
+		paranoid:true,
+		
 	}
 )
 Usuario.associate = (models)=>{

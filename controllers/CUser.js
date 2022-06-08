@@ -72,3 +72,16 @@ export const updateUser = async (req, res) => {
     makeResponsesException(res, e)
   }
 }
+
+export const DeletUserById = async (req, res) => {
+  try {
+    const { id } = req.params
+    const user = await Usuario.destroy({
+      where: { id }
+    })
+    makeResponsesOkData(res, user, "Success")
+
+  } catch (e) {
+    makeResponsesException(res, e)
+  }
+}

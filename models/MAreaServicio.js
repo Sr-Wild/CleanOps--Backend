@@ -17,7 +17,11 @@ export const AreaServicio = sequelize.define(
         sector:{
             type:Sequelize.STRING(100)
         }
-    }
+    },
+    {
+		paranoid:true,
+		
+	}
 )
 AreaServicio.associate = (models) => {
     AreaServicio.belongsTo(models.Incidencia, { foreignKey: 'Incidenciaid' })

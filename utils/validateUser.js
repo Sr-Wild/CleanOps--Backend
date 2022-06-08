@@ -31,8 +31,4 @@ export const validateUpdate = [
 
 export const validateParams = [
 	param('id').isInt().custom((value) => { if (value <= 0) { throw new Error('the id value does not belong to any user') } return true }),
-	param('cedula').exists().notEmpty().isLength({  max: 10 }).isString().optional(),
-	param('correo').exists().notEmpty().isLength({ max: 30 }).isEmail().optional(),
-	param('telefono').exists().notEmpty().isLength({ max: 12 }).isString().optional(),
-	(req, res, next) => { validateResult(req, res, next) }
 ]

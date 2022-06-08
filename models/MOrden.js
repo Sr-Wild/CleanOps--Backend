@@ -32,7 +32,11 @@ export const Orden = sequelize.define(
         estado:{
             type: Sequelize.INTEGER
         },
-    }
+    },
+    {
+		paranoid:true,
+		
+	}
 )
 Orden.associate = (models) => {
     Orden.hasOne(models.AreaServicio, { foreignKey: 'AreaServicioid' })

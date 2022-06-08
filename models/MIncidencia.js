@@ -24,7 +24,11 @@ export const Incidencia = sequelize.define(
         estatus:{
             type: Sequelize.INTEGER
         }
-    }
+    },
+    {
+		paranoid:true,
+		
+	}
 )
 Incidencia.associate = (models) => {
     Incidencia.hasMany(models.Usuario, { foreignKey: 'UsuarioId' })
