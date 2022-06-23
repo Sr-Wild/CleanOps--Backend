@@ -1,5 +1,7 @@
 import Sequelize from 'sequelize'
-import { sequelize } from '../db/db.js'
+import { ConsumoRecursos } from "./MConsumoRecurso.js"
+import { Orden } from "./MOrden.js"
+import { sequelize } from "../db/db.js"
 
 export const ReporteConsumo = sequelize.define(
     'ReporteConsumo',
@@ -17,7 +19,6 @@ export const ReporteConsumo = sequelize.define(
         }
     }
 )
-  ReporteConsumo.associate = (models) => {
-		ReporteConsumo.belongsTo(models.ConsumoRecursos, { foreignKey: 'Reporteid' })
-		ReporteConsumo.hasOne(models.Orden, { foreignKey: 'OrdenId' })
-	}
+ReporteConsumo.belongsTo(ConsumoRecursos, { foreignKey: 'Reporteid' })
+ReporteConsumo.hasOne(Orden, { foreignKey: 'OrdenId' })
+

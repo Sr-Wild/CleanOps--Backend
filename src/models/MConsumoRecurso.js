@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize'
 import { sequelize } from '../db/db.js'
+import { ReporteConsumo } from './MReporteConsumo.js'
 
 export const ConsumoRecursos = sequelize.define(
     'ConsumoRecursos',
@@ -9,7 +10,7 @@ export const ConsumoRecursos = sequelize.define(
             autoIncrement: true,
             primaryKey: true
         },
-        OrdenId:{
+        ReporteId:{
             type: Sequelize.INTEGER
         },
         InventarioId:{
@@ -21,6 +22,4 @@ export const ConsumoRecursos = sequelize.define(
     }
     
 )
-ConsumoRecursos.associate = (models) => {
-    ConsumoRecursos.hasMany(models.ConsumoRecursos, { foreignKey: 'Reporteid' })
-}
+ConsumoRecursos.hasMany(ReporteConsumo , { foreignKey: 'Reporteid' })

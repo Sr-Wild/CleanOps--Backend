@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize'
 import { sequelize } from '../db/db.js'
+import { Usuario } from './MUser.js'
 
 export const NivelUsuario = sequelize.define(
     'NivelUsuario',
@@ -9,14 +10,14 @@ export const NivelUsuario = sequelize.define(
             autoIncrement: true,
             primaryKey: true
         },
-        descripcion:{
+        descripcion: {
             type: Sequelize.STRING(10)
         },
-        estatus:{
+        estatus: {
             type: Sequelize.INTEGER
-        } 
+        }
     }
 )
-NivelUsuario.associate = (models) => {
-    NivelUsuario.belongsTo(models.Usuario, { foreignKey: 'NivelUsuarioId' })
-}
+
+NivelUsuario.belongsTo(Usuario, { foreignKey: 'NivelUsuarioId' })
+

@@ -1,5 +1,9 @@
 import Sequelize from 'sequelize'
 import { sequelize } from '../db/db.js'
+import { NivelUsuario } from './MNivelUsuario.js'
+import { Participantes } from './MParticipantes.js'
+import { Incidencia } from './MIncidencia.js'
+import { Orden } from "./MOrden.js"
 
 export const Usuario = sequelize.define(
 	'Usuarios',
@@ -28,10 +32,6 @@ export const Usuario = sequelize.define(
 			unique: true
 			
 		},
-		telefono:{
-			type:Sequelize.STRING(12),
-			unique: true
-		},
 		direccion:{
 			type: Sequelize.STRING(100)
 		},
@@ -54,10 +54,7 @@ export const Usuario = sequelize.define(
 		
 	}
 )
-Usuario.associate = (models)=>{
-	Usuario.hasOne(models.NivelUsuario, { foreignKey: 'NivelUsuarioId' })
-	Usuario.belongsTo(models.Participantes, { foreignKey: 'UsuarioId' })
-	Usuario.belongsTo(models.Incidencia, { foreignKey: 'Incidenciaid' })
-	Usuario.belongsTo(models.Orden, { foreignKey: 'UsuarioId' })
-
-}
+Usuario.hasOne(NivelUsuario,{foreignKey: 'NivelUsuarioId'})
+Usuario.belongsTo(Participantes,{ foreignKey: 'UsuarioId' })
+Usuario.belongsTo(Incidencia,{ foreignKey: 'Incidenciaid' })
+Usuario.belongsTo(Orden,{ foreignKey: 'UsuarioId' })

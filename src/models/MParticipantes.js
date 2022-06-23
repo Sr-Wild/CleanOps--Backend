@@ -1,5 +1,7 @@
 import Sequelize from 'sequelize'
 import { sequelize } from '../db/db.js'
+import { Usuario } from './MUser.js'
+import { Orden } from './MOrden.js'
 
 export const Participantes = sequelize.define(
     'Participantes',
@@ -9,15 +11,13 @@ export const Participantes = sequelize.define(
             autoIncrement: true,
             primaryKey: true
         },
-        UsuarioId:{
+        UsuarioId: {
             type: Sequelize.INTEGER
         },
-        OrdenId:{
+        OrdenId: {
             type: Sequelize.INTEGER
         }
-    } 
+    }
 )
-Participantes.associate = (models) => {
-    Participantes.hasMany(models.Usuario, { foreignKey: 'UsuarioId' })
-    Participantes.hasMany(models.Orden, { foreignKey: 'OrdenId' })
-}
+Participantes.hasMany(Usuario, { foreignKey: 'UsuarioId' })
+Participantes.hasMany(Orden, { foreignKey: 'OrdenId' })

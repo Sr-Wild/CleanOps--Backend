@@ -1,5 +1,10 @@
 import Sequelize from 'sequelize'
 import { sequelize } from '../db/db.js'
+import { Usuario } from './MUser.js'
+import { ReporteConsumo } from './MReporteConsumo.js'
+import { Participantes } from './MParticipantes.js'
+import { Incidencia } from './MIncidencia.js'
+import { AreaServicio } from './MAreaServicio.js'
 
 export const Orden = sequelize.define(
     'Ordenes',
@@ -38,10 +43,8 @@ export const Orden = sequelize.define(
 		
 	}
 )
-Orden.associate = (models) => {
-    Orden.hasOne(models.AreaServicio, { foreignKey: 'AreaServicioid' })
-    Orden.hasOne(models.Orden, { foreignKey: 'UsuarioId' })
-    Orden.hasOne(models.Incidencia, { foreignKey: 'Incidenciaid' })
-    Orden.belongsTo(models.ReporteConsumo, { foreignKey: 'Ordenid' })
-    Orden.belongsTo(models.Orden, { foreignKey: 'OrdenId' })
-}
+Orden.hasOne(AreaServicio, { foreignKey: 'AreaServicioid' })
+Orden.hasOne(Usuario, { foreignKey: 'UsuarioId' })
+Orden.hasOne(Incidencia, { foreignKey: 'Incidenciaid' })
+Orden.belongsTo(ReporteConsumo, { foreignKey: 'Ordenid' })
+Orden.belongsTo(Participantes, { foreignKey: 'OrdenId' })

@@ -1,5 +1,7 @@
 import Sequelize from 'sequelize'
 import { sequelize } from '../db/db.js'
+import { Incidencia } from "./MIncidencia.js"
+import { Orden } from "./MOrden.js"
 export const AreaServicio = sequelize.define(
     'AreaServicios',
     {
@@ -9,7 +11,9 @@ export const AreaServicio = sequelize.define(
             primaryKey: true
         },
         codigo:{
-            type: Sequelize.STRING(10)
+            type: Sequelize.STRING(10),
+            primaryKey:true,
+			unique:true
         },
         descripcion: {
             type:Sequelize.STRING(100)
@@ -23,7 +27,5 @@ export const AreaServicio = sequelize.define(
 		
 	}
 )
-AreaServicio.associate = (models) => {
-    AreaServicio.belongsTo(models.Incidencia, { foreignKey: 'Incidenciaid' })
-    AreaServicio.belongsTo(models.Orden, { foreignKey: 'OrdenId' })
-}
+AreaServicio.belongsTo(Incidencia, { foreignKey: 'Incidenciaid' })
+AreaServicio.belongsTo(Orden, { foreignKey: 'OrdenId' })
