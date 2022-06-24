@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize'
 import { sequelize } from '../db/db.js'
-import { Usuario } from './MUser.js'
+
 
 export const NivelUsuario = sequelize.define(
     'NivelUsuario',
@@ -19,5 +19,5 @@ export const NivelUsuario = sequelize.define(
     }
 )
 
-NivelUsuario.belongsTo(Usuario, { foreignKey: 'NivelUsuarioId' })
+
 

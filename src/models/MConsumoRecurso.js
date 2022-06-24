@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize'
 import { sequelize } from '../db/db.js'
-import { ReporteConsumo } from './MReporteConsumo.js'
+
 
 export const ConsumoRecursos = sequelize.define(
     'ConsumoRecursos',
@@ -22,4 +22,3 @@ export const ConsumoRecursos = sequelize.define(
     }
     
 )
-ConsumoRecursos.hasMany(ReporteConsumo , { foreignKey: 'Reporteid' })

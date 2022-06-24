@@ -1,4 +1,4 @@
-import message from './messages.json' assert {type: "json"}
+import message from './messages.json' assert {type: 'json'}
 
 export const makeResponsesError = (res, code) => {
   const msg = {

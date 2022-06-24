@@ -1,7 +1,6 @@
 import Sequelize from 'sequelize'
 import { sequelize } from '../db/db.js'
-import { Usuario } from './MUser.js'
-import { Orden } from './MOrden.js'
+
 
 export const Participantes = sequelize.define(
     'Participantes',
@@ -19,5 +18,3 @@ export const Participantes = sequelize.define(
         }
     }
 )
-Participantes.hasMany(Usuario, { foreignKey: 'UsuarioId' })
-Participantes.hasMany(Orden, { foreignKey: 'OrdenId' })

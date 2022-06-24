@@ -1,6 +1,4 @@
 import Sequelize from 'sequelize'
-import { ConsumoRecursos } from "./MConsumoRecurso.js"
-import { Orden } from "./MOrden.js"
 import { sequelize } from "../db/db.js"
 
 export const ReporteConsumo = sequelize.define(
@@ -19,6 +17,5 @@ export const ReporteConsumo = sequelize.define(
         }
     }
 )
-ReporteConsumo.belongsTo(ConsumoRecursos, { foreignKey: 'Reporteid' })
-ReporteConsumo.hasOne(Orden, { foreignKey: 'OrdenId' })
+
 

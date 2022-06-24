@@ -1,7 +1,6 @@
 import Sequelize from 'sequelize'
 import { sequelize } from '../db/db.js'
-import { Incidencia } from "./MIncidencia.js"
-import { Orden } from "./MOrden.js"
+
 export const AreaServicio = sequelize.define(
     'AreaServicios',
     {
@@ -27,5 +26,3 @@ export const AreaServicio = sequelize.define(
 		
 	}
 )
-AreaServicio.belongsTo(Incidencia, { foreignKey: 'Incidenciaid' })
-AreaServicio.belongsTo(Orden, { foreignKey: 'OrdenId' })
