@@ -1,4 +1,5 @@
-import message from './messages.json' assert {type: 'json'}
+import message from './messages.json' assert {type:'json'}
+//impor file.json with ES6
 
 export const makeResponsesError = (res, code) => {
   const msg = {
