@@ -10,7 +10,7 @@ export const sequelize = new Sequelize(
 		//dialect database
 		dialect:"postgres"
 	})
-
+//Authenticate connection
 sequelize.authenticate().then(() => {
 	console.log('Connection has been established successfully.');
 }).catch(err => {

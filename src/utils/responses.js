@@ -33,4 +33,3 @@ export const makeResponsesOkData = (res, data, code) => {
   }
   res.status(200).json(msg)
 }
-
